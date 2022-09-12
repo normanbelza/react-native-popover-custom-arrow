@@ -301,14 +301,15 @@ export default class BasePopover extends Component<BasePopoverProps, BasePopover
           if (this._isMounted) {
             this.setState({ showing: true });
             if (this.props.debug || DEBUG) {
-              setTimeout(() =>
-                this.popoverRef.current &&
-                getRectForRef(this.popoverRef).then((rect: Rect) => this.debug('animateIn - onOpenComplete - Calculated Popover Rect', rect))
-              );
-              setTimeout(() =>
-                this.arrowRef.current &&
-                getRectForRef(this.arrowRef).then((rect: Rect) => this.debug('animateIn - onOpenComplete - Calculated Arrow Rect', rect))
-              );
+              setTimeout(() => {
+                this.debug('this is happening in BasePopover A');
+                return this.popoverRef.current && getRectForRef(this.popoverRef).then((rect: Rect) => this.debug('animateIn - onOpenComplete - Calculated Popover Rect', rect));
+              });
+              setTimeout(() => {
+                this.debug('this is happening in BasePopover B');
+                return this.arrowRef.current &&
+                getRectForRef(this.arrowRef).then((rect: Rect) => this.debug('animateIn - onOpenComplete - Calculated Arrow Rect', rect));
+              });
             }
           }
           if (this.props.onOpenComplete) setTimeout(this.props.onOpenComplete);

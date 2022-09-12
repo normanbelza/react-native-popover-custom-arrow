@@ -229,6 +229,7 @@ export default class AdaptivePopover extends Component<AdaptivePopoverProps, Ada
     let rect: Rect;
     count = 0;
     do {
+      this.debug('this is happening in AdaptivePopover');
       rect = await getRectForRef(fromRef);
       rect = new Rect(rect.x + horizontalOffset, rect.y + verticalOffset, rect.width, rect.height);
 
